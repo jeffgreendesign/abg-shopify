@@ -166,6 +166,7 @@
 
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
+  // Locale-aware URL
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
 
   fetch(window.Shopify.routes.root + urlBuild)
