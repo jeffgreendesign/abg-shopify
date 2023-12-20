@@ -133,7 +133,7 @@
     );
   };
 
-  const addToCart2 = (product) => {
+  {% comment %} const addToCart2 = (product) => {
     // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
     let formData = {
       items: [
@@ -145,22 +145,24 @@
     };
     console.log(formData);
 
-    {% comment %} const addToCartBtn = document.querySelector('.addToCart'); {% endcomment %}
+    const addToCartBtn = document.querySelector('.addToCart');
 
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
+    addToCartBtn.addEventListener('click', function (el) {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
       .then((response) => {
         return response.json();
       })
       .catch((error) => {
         console.error('Error:', error);
       });
-  });
+    });
+  }; {% endcomment %}
 
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
@@ -171,9 +173,33 @@
     .then((product) => {
       console.log(product);
       prodUpdate(product);
-      addToCart2(product);
+      {% comment %} addToCart2(product); {% endcomment %}
     })
     .catch((error) => {
       console.error('Error:', error);
     });
+
+
+  let formData = {
+    items: [
+      {
+        id: product.variants[0].id, // main: 8928492618027, variant: 47616331809067
+        quantity: 1,
+      },
+    ],
+  };
+
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 </script>
