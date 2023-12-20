@@ -138,17 +138,45 @@
       ${variants}
       <p>$${product.price / 100}</p> 
       <div class="product-description">${product.description ? product.description : ''}</div>
+      <button class="addToCart">Add to cart</button>
       `
     );
   }
 
+  // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
+
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
   const currentProd = {};
+
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
   .then((product) => {
     return prodUpdate(product);
   })
-  .catch(error => console.log('Error'))
-  {% comment %} .then(product => alert('The title of this product is ' + product.title)); {% endcomment %}
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+  // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
+
+  let formData = {
+    'items': [{
+      'id': product.id,
+      'quantity': 1
+      }]
+  }
+
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 </script>
