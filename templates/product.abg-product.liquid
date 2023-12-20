@@ -133,7 +133,7 @@
     );
   };
 
-  function addToCart2(product) {
+  const addToCart2 = (product) => {
     // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
 
     let formData = {
@@ -163,7 +163,7 @@
           console.error('Error:', error);
         });
     });
-  }
+  };
 
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
@@ -171,10 +171,10 @@
 
   fetch(window.Shopify.routes.root + urlBuild)
     .then((response) => response.json())
-    .then((product1) => {
+    .then((product) => {
       return prodUpdate(product);
     })
-    .then((product2) => {
+    .then((product) => {
       addToCart2(product);
     })
     .catch((error) => {
