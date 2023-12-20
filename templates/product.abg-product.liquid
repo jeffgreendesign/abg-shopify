@@ -146,7 +146,6 @@
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
-  const currentProd = {};
 
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
@@ -161,7 +160,7 @@
 
   let formData = {
     'items': [{
-      'id': product.id,
+      'id': {{ product.id }},
       'quantity': 1
       }]
   }
