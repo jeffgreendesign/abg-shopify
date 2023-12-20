@@ -97,10 +97,8 @@
     </header>
 
     <main>
-      <h2>{{ product.title }}</h2>
+      <div class="product-details"></div>
     </main>
-
-    <p>Testing 1</p>
 
     <div hidden>
       <span id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</span>
@@ -120,6 +118,15 @@
 
   const prodUpdate = (prod) => {
     console.log(prod);
+    const insertLocation = document.querySelector('.product-details');
+    subject.insertAdjacentHTML(
+      `
+      <img src="${product.featured_image}" alt="">
+      <h2>${product.title}</h2>
+      <p>$${product.price}</p>
+      ${product.description}
+      `
+    );
   }
 
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
