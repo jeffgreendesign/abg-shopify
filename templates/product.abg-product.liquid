@@ -110,8 +110,7 @@
 
 <script>
   const prodID = {{ product.id }};
-  const prodURL = {{ product.url }};
-  console.log(prodID, prodURL);
+  {% comment %} const prodURL = {{ product.url }}; {% endcomment %}
   {% comment %} async function fetchProduct() {
     const prodID = {{ product.id }};
     const prodURL = {{ product.url }};
