@@ -175,7 +175,7 @@
       return prodUpdate(product);
     })
     .then((product) => {
-      addToCart2(product);
+      return addToCart2(product);
     })
     .catch((error) => {
       console.error('Error:', error);
