@@ -126,7 +126,7 @@
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
       <p>$${product.amount}</p>
-      <div class="product-description">${product.description}</div>
+      <div class="product-description">${product.description ? product.description : ''}</div>
       `
     );
   }
