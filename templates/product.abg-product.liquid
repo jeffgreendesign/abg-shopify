@@ -107,11 +107,13 @@
 </html>
 
 <script>
-  async function fetchProduct() {
+  const prodID = {{ product.id }};
+  const prodURL = {{ product.url }};
+  console.log(prodID, prodURL);
+  {% comment %} async function fetchProduct() {
     const prodID = {{ product.id }};
     const prodURL = {{ product.url }};
-    {% comment %} const response = await fetch({{ product.url }}); {% endcomment %}
-    console.log(prodID, prodURL);
+    const response = await fetch({{ product.url }});
   }
-  fetchProduct();
+  fetchProduct(); {% endcomment %}
 </script>
