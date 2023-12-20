@@ -120,9 +120,9 @@
     console.log(product);
     const insertLocation = document.querySelector('.product-details');
     const variantList = product.variants;
-    const variantOptions = (variantList) => {
-      for (let i = 0;i<product.variants.length;i++) {
-        console.log(variant);
+    const variantOptions = (options) => {
+      for (let i = 0;i<options.length;i++) {
+        console.log(options[i]);
       }
     };
     const variants = '<select>' + variantList + '</select>';
