@@ -116,14 +116,14 @@
   }
   fetchProduct(); {% endcomment %}
 
-  const prodUpdate = (prod) => {
-    console.log(prod);
+  const prodUpdate = (product) => {
+    console.log(product);
     const insertLocation = document.querySelector('.product-details');
     insertLocation.insertAdjacentHTML(
       `
-      <img src="${product.featured_image}" alt="">
-      <h2>${product.title}</h2>
-      <p>$${product.price}</p>
+      <img src="${prod.featured_image}" alt="">
+      <h2>${prod.title}</h2>
+      <p>$${prod.price}</p>
       ${product.description}
       `
     );
