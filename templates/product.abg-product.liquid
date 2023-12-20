@@ -121,12 +121,12 @@
     const insertLocation = document.querySelector('.product-details');
     const variantList = product.variants;
     console.log(variantList);
-    const variantOptions = (options) => {
+    function variantOptions(options) {
       for (let i = 0;i<options.length;i++) {
         console.log(options[i]);
       }
     };
-    console.log(variantOptions);
+    console.log(variantOptions(variantList));
     const variants = '<select>' + variantList + '</select>';
     {% comment %} console.log(insertLocation); {% endcomment %}
     insertLocation.insertAdjacentHTML(
