@@ -143,18 +143,25 @@
         };
         console.log(formData);
 
-        fetch(window.Shopify.routes.root + 'cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        })
-        .then((response) => {
-          return response.json();
-        })
-        .catch((error) => {
-          console.error('Error:', error);
+        const addToCartBtn = document.querySelector('.addToCart');
+
+        addToCartBtn.addEventListener('click', function (el) {
+          {% comment %} console.log('clicked'); {% endcomment %}
+
+          fetch(window.Shopify.routes.root + '/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+          .then((response) => {
+            return response.json();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+
         });
       };
 
