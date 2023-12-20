@@ -152,20 +152,7 @@
   .then((product) => {
     return prodUpdate(product);
   })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
-  // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
-
-  let formData = {
-    'items': [{
-      'id': {{ product.id }},
-      'quantity': 1
-      }]
-  }
-
-  document.addEventListener("DOMContentLoaded", (event) => {
+  .then((setAddToCart) => {
     const addToCartBtn = document.querySelector('.addToCart');
 
     addToCartBtn.addEventListener('click', function(el) {
@@ -183,6 +170,38 @@
         console.error('Error:', error);
       });
     })
-    
+  })
+  .catch((error) => {
+    console.error('Error:', error);
   });
+
+  // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
+
+  let formData = {
+    'items': [{
+      'id': {{ product.id }},
+      'quantity': 1
+      }]
+  }
+{% comment %} 
+  document.addEventListener("DOMContentLoaded", () => {
+    const addToCartBtn = document.querySelector('.addToCart');
+
+    addToCartBtn.addEventListener('click', function(el) {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    })
+
+  }); {% endcomment %}
 </script>
