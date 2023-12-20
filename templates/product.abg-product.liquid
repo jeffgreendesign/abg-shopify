@@ -135,10 +135,12 @@
       `
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
-      ${variants}
-      <p>$${product.price / 100}</p> 
-      <div class="product-description">${product.description ? product.description : ''}</div>
-      <button class="addToCart">Add to cart</button>
+      <form action="" id="addToCartForm">
+        ${variants}
+        <p>$${product.price / 100}</p> 
+        <div class="product-description">${product.description ? product.description : ''}</div>
+        <button class="addToCart" type="submit">Add to cart</button>
+      </form>
       `
     );
   }
