@@ -145,8 +145,10 @@
       ],
     };
     console.log(formData);
+
+    const addToCartBtn = document.querySelector('.addToCart');
+
     addToCartBtn.addEventListener('click', function (el) {
-      const addToCartBtn = document.querySelector('.addToCart');
       fetch(window.Shopify.routes.root + 'cart/add', {
         method: 'POST',
         headers: {
