@@ -123,12 +123,12 @@
       `
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
-      {% comment %} <form action="cart/add" id="addToCartForm"> {% endcomment %}
+      <form action="cart/add" id="addToCartForm">
         ${variants}
         <p>$${product.price / 100}</p> 
         <div class="product-description">${product.description ? product.description : ''}</div>
         <button class="addToCart" type="submit">Add to cart</button>
-      {% comment %} </form> {% endcomment %}
+      </form>
       `
     );
   };
@@ -145,24 +145,22 @@
     };
     console.log(formData);
 
-    const addToCartBtn = document.querySelector('.addToCart');
+    {% comment %} const addToCartBtn = document.querySelector('.addToCart'); {% endcomment %}
 
-    addToCartBtn.addEventListener('click', function (el) {
-      fetch(window.Shopify.routes.root + 'cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        return response.json();
       })
-        .then((response) => {
-          return response.json();
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    });
-  };
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  });
 
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
