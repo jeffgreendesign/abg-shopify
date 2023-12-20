@@ -135,7 +135,6 @@
 
   const addToCart2 = (product) => {
     // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
-
     let formData = {
       items: [
         {
@@ -172,10 +171,8 @@
   fetch(window.Shopify.routes.root + urlBuild)
     .then((response) => response.json())
     .then((product) => {
-      return prodUpdate(product);
-    })
-    .then((product) => {
-      return addToCart2(product);
+      prodUpdate(product);
+      addToCart2(product);
     })
     .catch((error) => {
       console.error('Error:', error);
