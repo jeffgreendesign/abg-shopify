@@ -97,14 +97,12 @@
     </header>
 
     <main>
+      {% comment %} Add the details here {% endcomment %}
       <div class="product-details"></div>
     </main>
 
-    <div hidden>
-      <span id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</span>
-    </div>
-
     <script>
+      // Add the product details
       const prodUpdate = (product) => {
         const insertLocation = document.querySelector('.product-details');
         const variantList = product.variants;
@@ -133,6 +131,7 @@
       };
 
       const addToCart2 = (product) => {
+        // Add to cart functionality
         // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
         let formData = {
           'items': [{
@@ -140,12 +139,8 @@
             'quantity': 1
           }]
         };
-        console.log(formData);
-
         const addToCartBtn = document.querySelector('.addToCart');
-
         addToCartBtn.addEventListener('click', function (el) {
-
           fetch(window.Shopify.routes.root + "cart/add.js", {
             method: "POST",
             headers: {
@@ -159,15 +154,12 @@
           .catch((error) => {
             console.error("Error:", error);
           });
-
         });
       }; 
 
       // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
-
       // Locale-aware URL
       const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
-
       fetch(window.Shopify.routes.root + urlBuild)
         .then((response) => response.json())
         .then((product) => {
@@ -178,6 +170,7 @@
         .catch((error) => {
           console.error('Error:', error);
         });
+
     </script>
   </body>
 </html>
