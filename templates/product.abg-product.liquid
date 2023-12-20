@@ -119,7 +119,7 @@
   const prodUpdate = (prod) => {
     console.log(prod);
     const insertLocation = document.querySelector('.product-details');
-    subject.insertAdjacentHTML(
+    insertLocation.insertAdjacentHTML(
       `
       <img src="${product.featured_image}" alt="">
       <h2>${product.title}</h2>
