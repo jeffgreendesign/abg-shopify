@@ -113,7 +113,7 @@
     let variantOptions = '';
     function generateVariantOptions(options) {
       for (let i = 0; i < options.length; i++) {
-        variantOptions = variantOptions + `<option>${options[i].name}</option>`;
+        variantOptions = variantOptions + `<option selected="selected">${options[i].name}</option>`;
       }
     }
     generateVariantOptions(variantList);
@@ -149,7 +149,7 @@
 
     addToCartBtn.addEventListener('click', function (el) {
       console.log('clicked');
-      fetch(window.Shopify.routes.root + 'cart/add.js', {
+      fetch(window.Shopify.routes.root + 'cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
