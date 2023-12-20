@@ -148,6 +148,7 @@
     const addToCartBtn = document.querySelector('.addToCart');
 
     addToCartBtn.addEventListener('click', function (el) {
+      el.preventDefault();
       console.log('clicked');
       fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
