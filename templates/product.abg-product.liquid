@@ -167,21 +167,22 @@
 
   document.addEventListener("DOMContentLoaded", (event) => {
     const addToCartBtn = document.querySelector('.addToCart');
-  });
 
-  addToCartBtn.addEventListener('click', function(el) {
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
+    addToCartBtn.addEventListener('click', function(el) {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     })
-    .then(response => {
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  })
+    
+  });
 </script>
