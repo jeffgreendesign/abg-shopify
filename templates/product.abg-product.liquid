@@ -121,11 +121,12 @@
           `
           <img src="${product.featured_image}" alt="" style="max-width: 200px;">
           <h2>${product.title}</h2>
-          <form action="/cart/add" id="addToCartForm">
+          <form action="/cart/add" method="post" id="addToCartForm">
             ${variants}
             <p>$${product.price / 100}</p> 
             <div class="product-description">${product.description ? product.description : ''}</div>
-            <input type="submit" name="add" id="add" value="Add to Cart" class="addToCart button">
+            <input name="id" value="${product.variants[0].id}" type="hidden" />
+            <input type="submit" name="add" id="add" value="Add to Cart" class="addToCart button" />
           </form>
           `
         );
