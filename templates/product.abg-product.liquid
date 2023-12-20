@@ -119,12 +119,19 @@
   const prodUpdate = (product) => {
     console.log(product);
     const insertLocation = document.querySelector('.product-details');
+    const variantList = () => {
+      for (variant of product.variants) {
+        console.log(variant);
+      }
+    };
+    const variants = '<select>' + variantList + '</select>';
     console.log(insertLocation);
     insertLocation.insertAdjacentHTML(
       "afterbegin",
       `
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
+      ${variants}
       <p>$${product.price / 100}</p> 
       <div class="product-description">${product.description ? product.description : ''}</div>
       `
