@@ -122,6 +122,6 @@
   const currentProd = {};
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
-  .then(currentProduct => console.log(response.json()))
+  .then(product => console.log(product))
   {% comment %} .then(product => alert('The title of this product is ' + product.title)); {% endcomment %}
 </script>
