@@ -107,9 +107,11 @@
 </html>
 
 <script>
-  const rest1 = await admin.rest.resources.Product.find({
-    session: session,
-    id: 632910392,
-  });
-  console.log(rest1);
+  async function fetchProduct() {
+    const prodID = {{ product.id }};
+    const prodURL = {{ product.url }};
+    {% comment %} const response = await fetch({{ product.url }}); {% endcomment %}
+    console.log(prodID, prodURL);
+  }
+  fetchProduct();
 </script>
