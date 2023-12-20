@@ -165,17 +165,21 @@
       }]
   }
 
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
+  const addToCartBtn = document.querySelector('.addToCart');
+
+  addToCartBtn.addEventListener('click', {
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   })
-  .then(response => {
-    return response.json();
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
 </script>
