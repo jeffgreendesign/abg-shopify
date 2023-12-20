@@ -107,9 +107,9 @@
 </html>
 
 <script>
-  async function fetchProduct() {
-    const response = await fetch({{ product.url }});
-    // waits until the request completes...
-    console.log(response);
-  }
+  const rest1 = await admin.rest.resources.Product.find({
+    session: session,
+    id: 632910392,
+  });
+  console.log(rest1);
 </script>
