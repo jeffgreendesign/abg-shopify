@@ -117,13 +117,13 @@
   fetchProduct(); {% endcomment %}
 
   const prodUpdate = (product) => {
-    console.log(product);
+    {% comment %} console.log(product); {% endcomment %}
     const insertLocation = document.querySelector('.product-details');
     const variantList = product.variants;
     let variantOptions = '';
     function generateVariantOptions(options) {
       for (let i = 0;i<options.length;i++) {
-        console.log(options[i].name);
+        {% comment %} console.log(options[i].name); {% endcomment %}
         variantOptions = variantOptions + `<option>${options[i].name}</option>`
       }
     };
