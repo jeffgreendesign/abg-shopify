@@ -120,10 +120,11 @@
     console.log(product);
     const insertLocation = document.querySelector('.product-details');
     insertLocation.insertAdjacentHTML(
+      "afterbegin",
       `
-      <img src="${prod.featured_image}" alt="">
-      <h2>${prod.title}</h2>
-      <p>$${prod.price}</p>
+      <img src="${product.featured_image}" alt="">
+      <h2>${product.title}</h2>
+      <p>$${product.price}</p>
       ${product.description}
       `
     );
