@@ -119,7 +119,9 @@
   fetchProduct(); {% endcomment %}
 
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
+  const currentProd = {};
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
-  .then(product => alert('The title of this product is ' + product.title));
+  .then(currentProduct => console.log(response.json()))
+  {% comment %} .then(product => alert('The title of this product is ' + product.title)); {% endcomment %}
 </script>
