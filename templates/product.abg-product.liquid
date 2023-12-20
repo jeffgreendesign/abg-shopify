@@ -171,6 +171,7 @@
   fetch(window.Shopify.routes.root + urlBuild)
     .then((response) => response.json())
     .then((product) => {
+      console.log(product);
       prodUpdate(product);
       addToCart2(product);
     })
