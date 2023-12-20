@@ -112,14 +112,14 @@
     const variantList = product.variants;
     let variantOptions = '';
     function generateVariantOptions(options) {
-      for (let i = 0;i<options.length;i++) {
-        variantOptions = variantOptions + `<option>${options[i].name}</option>`
+      for (let i = 0; i < options.length; i++) {
+        variantOptions = variantOptions + `<option>${options[i].name}</option>`;
       }
-    };
+    }
     generateVariantOptions(variantList);
     const variants = '<select>' + variantOptions + '</select>';
     insertLocation.insertAdjacentHTML(
-      "afterbegin",
+      'afterbegin',
       `
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
@@ -131,6 +131,36 @@
       </form>
       `
     );
+  };
+
+  function addToCart2(product) {
+    // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
+
+    let formData = {
+      items: [
+        {
+          id: product.id,
+          quantity: 1,
+        },
+      ],
+    };
+    console.log(formData);
+    addToCartBtn.addEventListener('click', function (el) {
+      const addToCartBtn = document.querySelector('.addToCart');
+      fetch(window.Shopify.routes.root + 'cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
   }
 
   // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
@@ -138,40 +168,12 @@
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
 
   fetch(window.Shopify.routes.root + urlBuild)
-  .then(response => response.json())
-  .then((product) => {
-    // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
-
-    let formData = {
-    'items': [{
-      'id': product.id,
-      'quantity': 1
-      }]
-    }
-    console.log(formData);
-    
-    function addToCart2(product) {
-      addToCartBtn.addEventListener('click', function(el) {
-
-      const addToCartBtn = document.querySelector('.addToCart');
-        fetch(window.Shopify.routes.root + 'cart/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        })
-        .then(response => {
-          return response.json();
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      })
-      
-    return prodUpdate(product);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+    .then((response) => response.json())
+    .then((product) => {
+      addToCart2(product);
+      return prodUpdate(product);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 </script>
