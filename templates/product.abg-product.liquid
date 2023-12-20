@@ -138,7 +138,7 @@
     let formData = {
       items: [
         {
-          id: product.id,
+          id: product.id, // 8928492618027
           quantity: 1,
         },
       ],
@@ -148,7 +148,7 @@
     const addToCartBtn = document.querySelector('.addToCart');
 
     addToCartBtn.addEventListener('click', function (el) {
-      fetch(window.Shopify.routes.root + 'cart/add', {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
