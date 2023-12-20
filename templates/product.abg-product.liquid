@@ -107,29 +107,17 @@
 </html>
 
 <script>
-  {% comment %} const prodID = {{ product.id }}; {% endcomment %}
-  {% comment %} const prodURL = {{ product.url }}; {% endcomment %}
-  {% comment %} async function fetchProduct() {
-    const prodID = {{ product.id }};
-    const prodURL = {{ product.url }};
-    const response = await fetch({{ product.url }});
-  }
-  fetchProduct(); {% endcomment %}
-
   const prodUpdate = (product) => {
-    {% comment %} console.log(product); {% endcomment %}
     const insertLocation = document.querySelector('.product-details');
     const variantList = product.variants;
     let variantOptions = '';
     function generateVariantOptions(options) {
       for (let i = 0;i<options.length;i++) {
-        {% comment %} console.log(options[i].name); {% endcomment %}
         variantOptions = variantOptions + `<option>${options[i].name}</option>`
       }
     };
     generateVariantOptions(variantList);
     const variants = '<select>' + variantOptions + '</select>';
-    {% comment %} console.log(insertLocation); {% endcomment %}
     insertLocation.insertAdjacentHTML(
       "afterbegin",
       `
@@ -151,9 +139,6 @@
 
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
-  .then((product) => {
-    return prodUpdate(product);
-  })
   .then((product) => {
     // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
 
@@ -183,7 +168,8 @@
           console.error('Error:', error);
         });
       })
-    }
+      
+    return prodUpdate(product);
   })
   .catch((error) => {
     console.error('Error:', error);
