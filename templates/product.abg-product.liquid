@@ -93,11 +93,11 @@
 
   <body class="gradient">
     <header>
-      <h1>{{ product.title }}</h1>
+      <h1>{{ shop.name }}</h1>
     </header>
 
     <main>
-      <h2>{{ shop.name }}</h2>
+      <h2>{{ product.title }}</h2>
     </main>
 
     <div hidden>
@@ -106,4 +106,7 @@
   </body>
 </html>
 
-<script></script>
+<script>
+  const response = await fetch({{ product.url }});
+  console.log(response);
+</script>
