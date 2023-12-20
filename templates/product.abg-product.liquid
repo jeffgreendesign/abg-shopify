@@ -118,10 +118,17 @@
   }
   fetchProduct(); {% endcomment %}
 
+  const prodUpdate(prod) {
+    console.log(prod);
+  }
+
   const urlBuild = 'products/' + '{{ product.title | handle }}' + '.js';
   const currentProd = {};
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
-  .then(product => console.log(product))
+  .then((product) => {
+    prodUpdate(product);
+  })
+  .catch(error => console.log('Error'))
   {% comment %} .then(product => alert('The title of this product is ' + product.title)); {% endcomment %}
 </script>
