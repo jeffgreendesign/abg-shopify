@@ -131,15 +131,34 @@
         );
       };
 
+      let formData = {
+        'items': [{
+         'id': 36110175633573,
+         'quantity': 2
+         }]
+       };
+       fetch(window.Shopify.routes.root + 'cart/add.js', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(formData)
+       })
+       .then(response => {
+         return response.json();
+       })
+       .catch((error) => {
+         console.error('Error:', error);
+       });
+
+      {% comment %} 
       const addToCart2 = (product) => {
         // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
         let formData = {
-          'items': [
-            {
-              'id': product.variants[0].id,
-              'quantity': 1
-            },
-          ],
+          'items': [{
+            'id': product.variants[0].id,
+            'quantity': 1
+          }],
         };
         console.log(formData);
 
@@ -163,7 +182,8 @@
           });
 
         });
-      };
+      }; 
+    {% endcomment %}
 
       // Ajax API - Product: https://shopify.dev/docs/api/ajax/reference/product
 
