@@ -107,6 +107,9 @@
 </html>
 
 <script>
-  const response = await fetch({{ product.url }});
-  console.log(response);
+  async function fetchProduct() {
+    const response = await fetch({{ product.url }});
+    // waits until the request completes...
+    console.log(response);
+  }
 </script>
