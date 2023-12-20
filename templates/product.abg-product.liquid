@@ -108,7 +108,7 @@
 
 <script>
   const prodID = {{ product.id }};
-  const prodURL = String({{ product.url }});
+  const prodURL = {{ product.url }};
   console.log(prodID, prodURL);
   {% comment %} async function fetchProduct() {
     const prodID = {{ product.id }};
@@ -116,4 +116,8 @@
     const response = await fetch({{ product.url }});
   }
   fetchProduct(); {% endcomment %}
+
+  fetch(window.Shopify.routes.root + prodURL)
+  .then(response => console.log(response.json()))
+  .then(product => alert('The title of this product is ' + product.title));
 </script>
