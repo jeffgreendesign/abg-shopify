@@ -148,30 +148,16 @@
     const addToCartBtn = document.querySelector('.addToCart');
 
     addToCartBtn.addEventListener('click', function (el) {
-      console.log('clicked');
+      {% comment %} console.log('clicked'); {% endcomment %}
 
-      {% comment %} fetch(window.Shopify.routes.root + 'cart/add.js', {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: 'items: [ { id: 47616331809067, quantity: 1 } ]',
       })
       .then((response) => {
-        return response.json();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      }); {% endcomment %}
-
-      let addToCartForm1 = document.querySelector('form[action$="/cart/add"]');
-      const submitter = document.querySelector('.addToCart');
-      let formData = new FormData(addToCartForm1, submitter);
-      fetch(window.Shopify.routes.root + 'cart/add.js', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
         return response.json();
       })
       .catch((error) => {
