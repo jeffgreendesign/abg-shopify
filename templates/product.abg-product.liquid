@@ -134,7 +134,7 @@
   fetch(window.Shopify.routes.root + urlBuild)
   .then(response => response.json())
   .then((product) => {
-    prodUpdate(product);
+    return prodUpdate(product);
   })
   .catch(error => console.log('Error'))
   {% comment %} .then(product => alert('The title of this product is ' + product.title)); {% endcomment %}
