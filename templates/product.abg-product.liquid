@@ -149,12 +149,12 @@
 
     addToCartBtn.addEventListener('click', function (el) {
       console.log('clicked');
-      fetch(window.Shopify.routes.root + 'cart/add', {
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: formData,
       })
       .then((response) => {
         return response.json();
