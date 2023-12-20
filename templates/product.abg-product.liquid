@@ -169,9 +169,11 @@
 
   fetch(window.Shopify.routes.root + urlBuild)
     .then((response) => response.json())
-    .then((product) => {
-      addToCart2(product);
+    .then((product1) => {
       return prodUpdate(product);
+    })
+    .then((product2) => {
+      addToCart2(product);
     })
     .catch((error) => {
       console.error('Error:', error);
