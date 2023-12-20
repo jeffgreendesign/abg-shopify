@@ -155,39 +155,11 @@
     return prodUpdate(product);
   })
   .then((setAddToCart) => {
-      // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
-
-    let formData = {
-      'items': [{
-        'id': {{ product.id }},
-        'quantity': 1
-        }]
-    }
-
-    const addToCartBtn = document.querySelector('.addToCart');
-
-    addToCartBtn.addEventListener('click', function(el) {
-      fetch(window.Shopify.routes.root + 'cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-        return response.json();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    })
+    addToCart2(product);
   })
   .catch((error) => {
     console.error('Error:', error);
   });
-
-
-{% comment %} 
 
   // Ajax API - Cart: https://shopify.dev/docs/api/ajax/reference/cart
 
@@ -198,7 +170,7 @@
     }]
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function addToCart2(product) {
     const addToCartBtn = document.querySelector('.addToCart');
 
     addToCartBtn.addEventListener('click', function(el) {
@@ -216,6 +188,5 @@
         console.error('Error:', error);
       });
     })
-
-  }); {% endcomment %}
+  }
 </script>
