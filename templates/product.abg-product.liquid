@@ -125,8 +125,8 @@
       `
       <img src="${product.featured_image}" alt="" style="max-width: 200px;">
       <h2>${product.title}</h2>
-      <p>$${product.price}</p>
-      ${if(product.description) ? product.description : 'No description'}
+      <p>$${product.amount}</p>
+      <div class="product-description">${product.description}</div>
       `
     );
   }
