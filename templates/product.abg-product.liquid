@@ -165,7 +165,8 @@
       }); {% endcomment %}
 
       let addToCartForm1 = document.querySelector('form[action$="/cart/add"]');
-      let formData = new FormData(addToCartForm1);
+      const submitter = document.querySelector('.addToCart');
+      let formData = new FormData(addToCartForm1, submitter);
       fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
         body: formData
